@@ -14,6 +14,7 @@ class Note{
     @Column()
     public description: string;
     
+<<<<<<< HEAD
     //@CreateDateColumn({ name: 'created_at' })
     @Column()
     public createAt: string;
@@ -23,6 +24,17 @@ class Note{
     public updateAt: string;
 
     @Column()
+=======
+    @CreateDateColumn({ name: 'created_at' })
+    // @Column()
+    public createAt: string;
+    
+   @UpdateDateColumn({ name: 'updated_at' })
+    // @Column()
+    public updateAt: string;
+
+    @Column({nullable: true})
+>>>>>>> Auth, Jwt, AccessToken, RefreshToken
     public url: string;
 }
 export default Note;

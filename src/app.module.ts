@@ -7,6 +7,10 @@ import { NoteModule } from './modules/note/note.module';
 import * as Joi from '@hapi/joi';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './modules/database/database.module';
+<<<<<<< HEAD
+=======
+import { StudentModule } from './modules/student/student.module';
+>>>>>>> Auth, Jwt, AccessToken, RefreshToken
 
 @Module({
   imports: [AuthModule, UserModule, NoteModule,
@@ -21,7 +25,12 @@ import { DatabaseModule } from './modules/database/database.module';
       }),
       isGlobal : true
     }),
+<<<<<<< HEAD
     DatabaseModule
+=======
+    DatabaseModule,
+    StudentModule
+>>>>>>> Auth, Jwt, AccessToken, RefreshToken
   ],
   controllers: [AppController],
   providers: [AppService],
