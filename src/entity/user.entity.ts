@@ -18,17 +18,9 @@ class User{
     public lastName: string;
     
     @UpdateDateColumn({ name: 'updated_at' })
-<<<<<<< HEAD
-    @Column()
     public updateAt: Date;
 
     @CreateDateColumn({ name: 'created_at' })
-    @Column()
-=======
-    public updateAt: Date;
-
-    @CreateDateColumn({ name: 'created_at' })
->>>>>>> Auth, Jwt, AccessToken, RefreshToken
     public createAt: Date;
 }
 export default User;
