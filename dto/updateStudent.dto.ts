@@ -1,6 +1,9 @@
 import { IsDate, IsDateString, IsEmail, IsNotEmpty, IsNumber, IsString, MinLength } from "class-validator"
 
-export class StudentDto {
+export class StudentUpdateDto {
+        // @IsNotEmpty()
+        // public studentId : string
+
         @MinLength(10)
         @IsNotEmpty()
         public fullname : string
@@ -23,9 +26,5 @@ export class StudentDto {
         @IsNotEmpty()
         public gender : string
 
-        
-        @IsNotEmpty()
-        @IsString()
-        public identification : string
     
 }

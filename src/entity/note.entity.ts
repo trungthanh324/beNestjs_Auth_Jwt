@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn,UpdateDateColumn, CreateDateColumn  } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn,UpdateDateColumn, CreateDateColumn, ManyToOne, JoinColumn  } from 'typeorm';
+import { Student } from './student.entity';
 
 @Entity({name: "note"})
 class Note{
@@ -15,14 +16,16 @@ class Note{
     public description: string;
     
     @CreateDateColumn({ name: 'created_at' })
-    // @Column()
     public createAt: string;
     
-   @UpdateDateColumn({ name: 'updated_at' })
-    // @Column()
+    @UpdateDateColumn({ name: 'updated_at' })
     public updateAt: string;
 
     @Column({nullable: true})
     public url: string;
+
+    @ManyToOne(() => Student, (student) => student.note)
+    @JoinColumn({name : "student_id"})
+    student : Student[] 
 }
 export default Note;

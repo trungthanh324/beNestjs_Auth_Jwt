@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './modules/auth/auth.module';
@@ -8,6 +8,8 @@ import * as Joi from '@hapi/joi';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './modules/database/database.module';
 import { StudentModule } from './modules/student/student.module';
+import { LoggerMiddleware } from 'middleware/log.middleware';
+import { RoleMiddleware } from 'middleware/role.middleware';
 
 @Module({
   imports: [AuthModule, UserModule, NoteModule,
@@ -28,4 +30,19 @@ import { StudentModule } from './modules/student/student.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(LoggerMiddleware, RoleMiddleware)
+      .forRoutes({
+        path: "/student",
+        method : RequestMethod.GET
+      });
+
+    // consumer.apply(RoleMiddleware)
+    // .forRoutes({
+    //   path: '/student',
+    //   method: RequestMethod.GET
+    // })
+  }
+}

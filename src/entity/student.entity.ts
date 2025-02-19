@@ -1,5 +1,7 @@
 import { MaxLength } from "class-validator";
-import { BeforeInsert, Column, Entity, PrimaryColumn, PrimaryGeneratedColumn, Unique } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, OneToMany, PrimaryColumn, PrimaryGeneratedColumn, Unique } from "typeorm";
+import Note from "./note.entity";
+import { Exclude } from "class-transformer";
 @Entity({ name: "students" }) 
 @Unique(["identification"])
 export class Student{
@@ -25,11 +27,15 @@ export class Student{
     @Column()
     public gender : string
 
+   
     @Column()
+    @Exclude()
     public identification : string
 
     // @BeforeInsert()
     // generate37StudentId(){
     //     this.studentId = this.studentId + "X"
     // } 
+    @OneToMany(() => Note, (note) => note.student)
+    note: Note []
 }
