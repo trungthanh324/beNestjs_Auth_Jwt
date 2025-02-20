@@ -2,6 +2,7 @@ import { Body, ClassSerializerInterceptor, Controller, Post, UseInterceptors } f
 import { UserService } from './user.service';
 import { RegisterUserDto } from 'dto/registerUser.dto';
 import { AuthService } from '../auth/auth.service';
+import { LoginDto } from 'dto/login.dto';
 
 @Controller('/api/v1/user')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -13,5 +14,10 @@ export class UserController {
     @Post('/register')
     registerUser(@Body() registerDto: RegisterUserDto){
         return this.authService.register(registerDto)
+    }
+
+    @Post('/login')
+    login(@Body() loginDto: LoginDto){
+        return this.authService.login(loginDto)
     }
 }
