@@ -5,6 +5,7 @@ import { Column, Entity, PrimaryGeneratedColumn,UpdateDateColumn, CreateDateColu
 @Entity({name: 'user'})
 class User{
     @PrimaryGeneratedColumn()
+    @Exclude()
     public id: number;
    
     @Column({unique: true})

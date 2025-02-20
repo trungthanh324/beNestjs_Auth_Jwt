@@ -19,4 +19,8 @@ export class UserService {
         const newUser = await this.userRepo.create(registerDto)
         return this.userRepo.save(newUser)    
     }
+
+    async getAllUser(){
+        return await this.userRepo.find()
+    }
 }
