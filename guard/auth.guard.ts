@@ -13,6 +13,7 @@ export class AuthGuard implements CanActivate {
   async canActivate(
     context: ExecutionContext,
   ): Promise<boolean> {
+    // console.log('1')
     const request = context.switchToHttp().getRequest();
     try {
        //XAC THUC:
@@ -20,7 +21,7 @@ export class AuthGuard implements CanActivate {
     const token = request.headers.authorization.split(' ')[1] // tach bearer
     // console.log(token)
     if(!token){
-        throw new ForbiddenException("provide accesstoken")
+        throw new ForbiddenException("provide accesstoken login or register ")
     }
 
     //B2: gia ma jwtverifyAsync token  de lay payload(data)
@@ -34,7 +35,7 @@ export class AuthGuard implements CanActivate {
     if(!user){throw new BadRequestException("token invalid")}
 
     //B4: dinh kem user vao cai request gui xuong be de truy cap vao 1 protected route 
-    request.currentUser = user
+    request.currentUser = user //currentUser trong auth.guard la bien tu gan de luu tt user vao request
     } catch (error) {
         if(error instanceof ForbiddenException || error instanceof BadRequestException){
             throw error

@@ -29,7 +29,7 @@ export class StudentService {
             throw new Error('Student not found');
         }
         // Object.assign(student, studentDto)
-        this.studentRepo.update(student,studentDto )
+        this.studentRepo.update(student,studentDto)
         this.studentRepo.save(student);
         return studentDto
     }
