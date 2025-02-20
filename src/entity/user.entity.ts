@@ -1,3 +1,5 @@
+import { Exclude } from 'class-transformer';
+import { Roles } from 'global/enum';
 import { Column, Entity, PrimaryGeneratedColumn,UpdateDateColumn, CreateDateColumn } from 'typeorm';
 
 @Entity({name: 'user'})
@@ -9,10 +11,11 @@ class User{
     public email: string;
    
     @Column()
+    @Exclude()
     public hashedPassword: string;
     
     @Column()
-    public firstName: string;
+    public firstName: string; 
     
     @Column()
     public lastName: string;
@@ -22,5 +25,9 @@ class User{
 
     @CreateDateColumn({ name: 'created_at' })
     public createAt: Date;
+
+    @Exclude()
+    @Column({default : Roles.USER})
+    public role : Roles
 }
 export default User;
