@@ -28,7 +28,8 @@ export class AuthService {
                 id: userEmail.id,
                 role: userEmail.role,
                 firstName: userEmail.firstName,
-                lastName: userEmail.lastName 
+                lastName: userEmail.lastName ,
+                email: userEmail.email
             }
             const accessToken = await this.jwtService.signAsync(payload,
                 {secret: process.env.JWT_SECRET})
@@ -58,8 +59,10 @@ export class AuthService {
             id: saveUser.id,
             firstName: saveUser.firstName,
             lastName: saveUser.lastName,
-            role: saveUser.role
+            role: saveUser.role,
+            email: saveUser.email
         }
+        
         const accessToken = await this.jwtService.signAsync(payload,{secret: process.env.JWT_SECRET})
         return {msg: "User created!", accessToken}
         } catch (error) {

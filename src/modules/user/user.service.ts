@@ -11,8 +11,8 @@ export class UserService {
         private readonly userRepo : Repository<User>
     ){}
     
-    findByEmail(email: string){
-        return this.userRepo.findOneBy({email})
+    async findByEmail(email: string){
+        return await this.userRepo.findOneBy({email})
     }
 
     async createUser(registerDto : RegisterUserDto){

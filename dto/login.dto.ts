@@ -7,4 +7,5 @@ export class LoginDto{
     @IsNotEmpty()
     @MinLength(8)
     public hashedPassword: string
+
 }
