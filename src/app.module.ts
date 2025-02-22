@@ -10,6 +10,9 @@ import { DatabaseModule } from './modules/database/database.module';
 import { StudentModule } from './modules/student/student.module';
 import { LoggerMiddleware } from 'middleware/log.middleware';
 import { RoleMiddleware } from 'middleware/role.middleware';
+import { SensitiveWordModule } from './modules/sensitive_word/sensitive_word.module';
+import { MailerModule } from '@nestjs-modules/mailer';
+import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 
 @Module({
   imports: [AuthModule, UserModule, NoteModule,
@@ -25,7 +28,31 @@ import { RoleMiddleware } from 'middleware/role.middleware';
       isGlobal : true
     }),
     DatabaseModule,
-    StudentModule
+    StudentModule,
+    SensitiveWordModule,
+    MailerModule.forRoot({
+      transport: {
+        host: 'smtp.gmail.com',
+        port: 465,
+        ignoreTLS: true,
+        secure: true,
+        auth: {
+          user: process.env.MAIL_USER,
+          pass: process.env.MAIL_PASSWORD,
+        },
+      },
+      defaults: {
+        from: '"Cong ty TNHH SPAMTIFY" <no-reply@localhost>',
+      },
+      // preview: true,
+      // template: {
+      //   dir: process.cwd() + '/template/',
+      //   adapter: new HandlebarsAdapter(), // or new PugAdapter() or new EjsAdapter()
+      //   options: {
+      //     strict: true,
+      //   },
+      // },
+    }), 
   ],
   controllers: [AppController],
   providers: [AppService],
