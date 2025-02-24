@@ -10,10 +10,14 @@ export class AuthController {
     getMail(){
         this.mailerService
       .sendMail({
-        to: 'trunghuy832@gmail.com', // list of receivers
-        subject: 'Testing gui email k tu ding', // Subject line
-        text: 'welcome', // plaintext body
-        html: '<b>hello world</b>', // HTML body content
+        to: 'buithanh10112000@gmail.com  ', // list of receivers
+        subject: 'Sáng văn chương, chiều văn võ', // Subject line
+        
+        template : "mail",
+        context: {
+            username: "Khánh Huyền",
+            activationCode: "có mới nới cũ"
+        }
       })
     
         return "ok"

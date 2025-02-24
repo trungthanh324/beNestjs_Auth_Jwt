@@ -42,16 +42,16 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
         },
       },
       defaults: {
-        from: '"Cong ty TNHH SPAMTIFY" <no-reply@localhost>',
+        from: '"Công ty TNHH SPAMTIFY" <no-reply@localhost>',
       },
       // preview: true,
-      // template: {
-      //   dir: process.cwd() + '/template/',
-      //   adapter: new HandlebarsAdapter(), // or new PugAdapter() or new EjsAdapter()
-      //   options: {
-      //     strict: true,
-      //   },
-      // },
+      template: {
+        dir: process.cwd() + '/src/mail_handlebar',
+        adapter: new HandlebarsAdapter(), // or new PugAdapter() or new EjsAdapter()
+        options: {
+          strict: true,
+        },
+      },
     }), 
   ],
   controllers: [AppController],

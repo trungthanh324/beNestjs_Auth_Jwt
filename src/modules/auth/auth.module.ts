@@ -7,7 +7,6 @@ import { UserModule } from '../user/user.module';
   imports: [
     JwtModule.register({
       global: true,
-
       signOptions: { expiresIn: '60s' },
     }),
     UserModule
